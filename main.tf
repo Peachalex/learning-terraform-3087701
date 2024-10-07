@@ -5,7 +5,7 @@ data "aws_ami" "app_ami" {
     name   = "name"
     values = ["bitnami-tomcat-*-x86_64-hvm-ebs-nami"]
   }
-
+https://www.linkedin.com/learning/browse?u=144623796
   filter {
     name   = "virtualization-type"
     values = ["hvm"]
@@ -16,7 +16,7 @@ data "aws_ami" "app_ami" {
 
 resource "aws_instance" "web" {
   ami           = data.aws_ami.app_ami.id
-  instance_type = "t3.nano"
+  instance_type = var.instance_type
 
   tags = {
     Name = "HelloWorld"
