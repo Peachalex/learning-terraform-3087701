@@ -72,13 +72,14 @@ module "alb" {
 
   listeners = {
     http-direct = {
-      port     = 80
-      protocol = "HTTP"
+      port               = 80
+      protocol           = "HTTP"
       target_group_index = 0
     }
+  }  
 
   tags = {
-    Environment = "Development"
+    Environment = "dev"
   }
 }
 
