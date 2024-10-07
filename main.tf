@@ -5,7 +5,6 @@ data "aws_ami" "app_ami" {
     name   = "name"
     values = ["bitnami-tomcat-*-x86_64-hvm-ebs-nami"]
   }
-https://www.linkedin.com/learning/browse?u=144623796
   filter {
     name   = "virtualization-type"
     values = ["hvm"]
