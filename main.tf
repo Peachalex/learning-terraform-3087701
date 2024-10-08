@@ -17,6 +17,7 @@ data "aws_ami" "app_ami" {
 
 module "blog_vpc" {
   source = "terraform-aws-modules/vpc/aws"
+  create_attachment = false
 
   name = "dev"
   cidr = "10.0.0.0/16"
