@@ -64,7 +64,7 @@ module "alb" {
   }
 
   listeners = {
-    http-direct = {
+    http_tcp_listener = {
       port               = 80
       protocol           = "HTTP"
       target_group_index = 0
@@ -77,8 +77,8 @@ module "alb" {
         content_type = "text/plain"
         message_body = "OK"
         status_code  = "200"
-    }
-  }
+      } 
+    } 
   }  
 
   tags = {
