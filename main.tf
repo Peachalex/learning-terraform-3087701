@@ -70,15 +70,17 @@ module "alb" {
       target_group_index = 0
     }
 
-    default_action = {
-      type = "fixed-response"
+    default_action {
+      type = "fixed_response"
 
       fixed_response {
         content_type = "text/plain"
         message_body = "OK"
-        status_code  = "200"
-      } 
-    } 
+        status_code = "200"
+      }
+    }
+
+    
   }  
 
   tags = {
