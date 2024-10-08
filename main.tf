@@ -63,23 +63,13 @@ module "alb" {
     }
   }
 
-  listeners = {
-    http_tcp_listener = {
-      port               = 80
-      protocol           = "HTTP"
+  http_tcp_listeners = [
+    {
+      port = 80
+      protocol = "HTTP"
       target_group_index = 0
-
-      default_action {
-        type = "fixed_response"
-
-        fixed_response {
-          content_type = "text/plain"
-          message_body = "OK"
-          status_code = "200"
-        }
-      }
     }
-  }
+  ]
 
   
 
