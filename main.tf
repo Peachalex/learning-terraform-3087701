@@ -68,8 +68,9 @@ module "alb" {
       port = 80
       protocol = "HTTP"
 
+
       forward = {
-        target_group_index = 0
+        target)group_key = "blog-instance"
       }
     }
   }
