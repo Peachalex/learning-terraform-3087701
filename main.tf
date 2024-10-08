@@ -31,7 +31,7 @@ module "blog_vpc" {
   }
 }
 
-module "autoscaling" {
+module "blog_autoscaling" {
   source  = "terraform-aws-modules/autoscaling/aws"
   version = "8.0.0"
 
@@ -50,7 +50,7 @@ module "autoscaling" {
 
 module "blog_alb" {
   source = "terraform-aws-modules/alb/aws"
-  create_attachment = false
+  
   version = "9.11.0"
 
   name            = "blog-alb"
@@ -78,13 +78,16 @@ module "blog_alb" {
       }
     }
   }
-
   
-
   tags = {
     Environment = "dev"
   }
 }
+
+resource "aws_autoscaling_attachment" "blog_attachment" {
+  autoscaling_group_name = module.blog_autoscaling.id
+  lb_target_group_arn = module.blog_alb.target_groups_arns
+} 
 
 module "blog_sg" {
   source  = "terraform-aws-modules/security-group/aws"
