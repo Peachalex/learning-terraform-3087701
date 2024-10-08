@@ -63,7 +63,7 @@ module "alb" {
     }
   }
 
-  listenters = {
+  listeners = {
     blog-http = {
       port = 80
       protocol = "HTTP"
