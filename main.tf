@@ -70,7 +70,7 @@ module "alb" {
       target_group_index = 0
     }
 
-    default_action {
+    default_action = {
       type = "fixed-response"
 
       fixed_response {
