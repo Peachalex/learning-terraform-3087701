@@ -13,9 +13,7 @@ data "aws_ami" "app_ami" {
   owners = ["979382823631"] # Bitnami
 }
 
-data "aws_vpc" "default"{
-  default = true
-}
+
 
 module "blog_vpc" {
   source = "terraform-aws-modules/vpc/aws"
@@ -48,7 +46,7 @@ resource "aws_instance" "blog" {
 module "alb" {
   source = "terraform-aws-modules/alb/aws"
 
-  
+  version = "9.11.0"
 
   name            = "blog-alb"
   vpc_id          = module.blog_vpc.vpc_id
@@ -71,6 +69,16 @@ module "alb" {
       protocol           = "HTTP"
       target_group_index = 0
     }
+
+    default_action {
+      type = "fixed-response"
+
+      fixed_response {
+        content_type = "text/plain"
+        message_body = "OK"
+        status_code  = "200"
+    }
+  }
   }  
 
   tags = {
