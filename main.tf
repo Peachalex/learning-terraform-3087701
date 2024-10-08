@@ -70,7 +70,7 @@ module "alb" {
 
 
       forward = {
-        target)group_key = "blog-instance"
+        target_group_key = "blog-instance"
       }
     }
   }
