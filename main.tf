@@ -54,7 +54,7 @@ module "alb" {
   security_groups = [module.blog_sg.security_group_id]
 
   target_groups = {
-    ex-instance = {
+    blog-instance = {
       name_prefix      = "blog-"
       protocol         = "HTTP"
       port             = 80
@@ -63,13 +63,16 @@ module "alb" {
     }
   }
 
-  http_tcp_listeners = [
-    {
+  listenters = {
+    blog-http = {
       port = 80
       protocol = "HTTP"
-      target_group_index = 0
+
+      forward = {
+        target_group_index = 0
+      }
     }
-  ]
+  }
 
   
 
